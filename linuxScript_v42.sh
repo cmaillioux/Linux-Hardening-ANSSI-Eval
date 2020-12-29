@@ -14,7 +14,7 @@ echo -e "           QQ#           ##Q"
 echo -e "         QQQQQQ#       #QQQQQQ"
 echo -e "         QQQQQQQ#     #QQQQQQQ"
 echo -e "           QQQQQ#######QQQQQ"
-echo -e "\n  SCRIPT AUDIT LINUX - Checks ANSSI v4.1"
+echo -e "\n  SCRIPT AUDIT LINUX - Checks ANSSI v4.2"
 #Clement MAILLIOUX - 2020
 
 ## VERIFICATION DES COMMANDES EN FONCTION DE LA DISTRIBUTION
@@ -228,7 +228,6 @@ fi
 if [[ $fichio1 == "" && $fichio2 == "" ]] 
 then
 	echo "[!12] Erreur : Pas de fichier detecte pour les parametres du noyau a l'amorcage" | $teecom -a /tmp/0_Audit_Execution.txt
-	runconditions=1
 fi
 # verifier la presence de la commande du statut apparmor
 echo -e "\n[?13] Verification de la disponibilite de commande de status de apparmor..."
@@ -396,12 +395,12 @@ then
 	if [[ $sysrel =~ .*lsb_release.* ]]
 	then
 		$sysrel -d >> /tmp/1_Audit_Basic
-		echo -e "\n" >> /tmp/1_Audit_Basic
+		echo -e "\n" >> /tmp/1_Audit_Basic.txt
 	else
 		if [[ $sysrel =~ .*os-release.* ]]
 		then
 			cat $sysrel
-			echo -e "\n" >> /tmp/1_Audit_Basic
+			echo -e "\n" >> /tmp/1_Audit_Basic.txt
 		fi
 	fi 
 	echo "[R10] Kernel Release..." | $teecom -a /tmp/1_Audit_Basic.txt
